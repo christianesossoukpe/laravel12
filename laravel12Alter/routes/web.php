@@ -28,5 +28,6 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.ind
 Route::get('/getscontacts', [ContactController::class, 'getContacts']);
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::delete('/contacts/{contact}', [ContactController::class, 'destroy']);
+Route::put('/contacts/{contact}', [ContactController::class, 'update']);
 
 require __DIR__.'/auth.php';
