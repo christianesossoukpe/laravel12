@@ -96,5 +96,4 @@ const addContact = async (contactData) => {
 </template>
 
 <style scoped>
-/* Il n'y a plus besoin de styles personnalisés avec Tailwind */
-</style>
+ </style>

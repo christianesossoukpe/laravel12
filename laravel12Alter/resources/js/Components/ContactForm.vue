@@ -172,5 +172,4 @@ const saveContact = async () => {
 </template>
 
 <style scoped>
-/* Plus besoin de styles personnalisés avec Tailwind, tout est géré par les classes utilitaires */
-</style>
+ </style>
