@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,5 +24,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/getscontacts', [ContactController::class, 'getContacts']);
+Route::post('/contacts', [ContactController::class, 'store']);
+Route::delete('/contacts/{contact}', [ContactController::class, 'destroy']);
 
 require __DIR__.'/auth.php';
