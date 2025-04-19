@@ -65,7 +65,7 @@ const saveContact = async () => {
       text: 'Le contact a été ajouté avec succès.'
     });
 
-    location.reload();
+    // location.reload();
   } catch (error) {
     console.error('Error saving contact:', error);
     isLoading.value = false;

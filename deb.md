@@ -43,4 +43,11 @@ voici lapi que je veux utiliser pour les pays:
 
 
 
- 
+ php artisan make:event
+
+php artisan make:listener
+
+
+php artisan make:event PodcastProcessed
+
+php artisan make:listener SendPodcastNotification --event=PodcastProcessed

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\contactEvent;
 use App\Models\Contact;
+use App\Models\User;
+use App\Notifications\ContactCreatedNotification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -20,6 +24,8 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
+        // $user = Auth::user();
+        // dd($user);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'company' => 'required|string|max:255',
@@ -29,8 +35,11 @@ class ContactController extends Controller
             'country_code' => 'required|string|size:2',
         ]);
 
-        Contact::create($validated);
-
+        $contact = Contact::create($validated);
+        // $user = auth()->user();
+        // $user = Auth::user();
+        event(new contactEvent($contact));
+        // $user->notify(new ContactCreatedNotification($contact));
         return redirect()->back();
     }
 
@@ -50,7 +59,7 @@ class ContactController extends Controller
     {
         return response()->json(Contact::orderBy('created_at', 'desc')->get());
     }
-   
+
 
     public function update(Request $request, Contact $contact)
     {
@@ -63,16 +72,14 @@ class ContactController extends Controller
             'email' => 'required|email|max:255',
             'country_code' => 'required|string|size:2',
         ]);
-    
+
         // Mise à jour des informations du contact
         $contact->update($validated);
-    
+
         // Retourner une réponse JSON après la mise à jour
         return response()->json([
             'message' => 'Contact mis à jour avec succès.',
             'contact' => $contact
         ], 200);
     }
-   
-    
 }
