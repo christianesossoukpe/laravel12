@@ -62,6 +62,7 @@ const deleteContact = async () => {
 
       // Émettre l'événement 'refresh' pour indiquer au parent qu'il doit actualiser la liste des contacts
       emit('refresh');
+      location.reload();
     } catch (error) {
       // Afficher une notification d'erreur en cas d'échec
       console.error('Erreur lors de la suppression :', error);

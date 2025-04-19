@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const emit = defineEmits(['close', 'save']);
 
@@ -53,15 +54,32 @@ const saveContact = async () => {
       isLoading.value = false;
       return;
     }
-    
+
     emit('save', form.value);
     isLoading.value = false;
+
+    // Affiche la SweetAlert de succès
+    Swal.fire({
+      icon: 'success',
+      title: 'Contact enregistré',
+      text: 'Le contact a été ajouté avec succès.'
+    });
+
+    location.reload();
   } catch (error) {
     console.error('Error saving contact:', error);
     isLoading.value = false;
+
+    // Affiche la SweetAlert d'erreur
+    Swal.fire({
+      icon: 'error',
+      title: 'Erreur',
+      text: "Une erreur est survenue lors de l'enregistrement du contact."
+    });
   }
 };
 </script>
+
 
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">

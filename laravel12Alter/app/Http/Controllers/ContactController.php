@@ -48,7 +48,7 @@ class ContactController extends Controller
     // Récupérer les contacts en JSON pour l'API
     public function getContacts()
     {
-        return response()->json(Contact::all());
+        return response()->json(Contact::orderBy('created_at', 'desc')->get());
     }
    
 
